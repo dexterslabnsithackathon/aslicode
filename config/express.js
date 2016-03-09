@@ -1,5 +1,6 @@
 var config = require('./config'),
 	express = require('express');
+var cookieParser = require('cookie-parser');	
 	/*bodyParser = require('body-parser'),
 	passport = require('passport'),
 	flash = require('connect-flash'),
@@ -8,7 +9,8 @@ var config = require('./config'),
 
 module.exports = function() {
 	var app = express();
-
+	app.use(cookieParser())
+	
 	app.set('views', './app/views');
 	app.set('view engine', 'ejs');
 
@@ -18,11 +20,13 @@ module.exports = function() {
 	require('../app/routes/hospitalForm.server.routes.js')(app);
 	require('../app/routes/mapdata.server.routes.js')(app);
 	require('../app/routes/heatmap.server.routes.js')(app);*/
+	require('../app/routes/main.js')(app);
 	require('../app/routes/variantA.server.routes.js')(app);
 	require('../app/routes/variantB.server.routes.js')(app);
 	require('../app/routes/success.server.routes.js')(app);
+	require('../app/routes/abtestdata.server.routes.js')(app);
 	app.use(express.static('./public'));
 
-	require('../app/routes/abtestdata.server.routes.js')(app);
+	
 	return app;
 };

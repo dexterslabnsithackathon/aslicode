@@ -1,18 +1,18 @@
 var mongoose = require('mongoose'),
-	crypto = require('crypto'),
 	Schema = mongoose.Schema;
 
 var abSchema = new Schema({
-	variant :[String],// array of file names
-	total : [Number], //no of visits to a particular page
+	//route 
+	variant:[String],// array of file names
+	total:[Number], //no of visits to a particular page
 	conversion:[Number], //no of success for any page
-	flag :Number, //int
+	flag: {type:Number}, //int
 	success:[String], //arrray of 2 strings
-	time : Number, // duration for experiment in range
-	endtime: Date //last time when expt is to be conducted
+	time:[Number], // duration for experiment in range
+	endtime:{type:Date} //last time when expt is to be conducted
 });
 
-abSchema.pre('save', 
+/*abSchema.pre('save', 
 	function(next) {
 		if (this.password) {
 			var md5 = crypto.createHash('md5');
@@ -21,7 +21,7 @@ abSchema.pre('save',
 
 		next();
 	}
-);
+);*/
 /*
 UserSchema.methods.authenticate = function(password) {
 	var md5 = crypto.createHash('md5');
